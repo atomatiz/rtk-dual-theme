@@ -1,38 +1,19 @@
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
+import { useDispatch } from 'react-redux';
+import { toggleTheme } from '../../redux/reducers/themeSlice';
 
 export const useThemeHook = () => {
-    const theme: boolean = useSelector(
-        (state: RootState) => state.theme.darkMode
-    );
-
-    const toggleTheme = () => {
-        switch (theme) {
-            case false:
-                localStorage.setItem('theme', JSON.stringify('dark'));
-                document.documentElement.classList.add('dark');
-                break;
-            case true:
-                localStorage.setItem('theme', JSON.stringify('light'));
-                document.documentElement.classList.remove('dark');
-                break;
-            default:
-                break;
-        }
-    };
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        const localTheme = localStorage.getItem('theme');
-
-        if (localTheme) {
-            localStorage.setItem('theme', JSON.stringify(localTheme));
-            document.documentElement.classList.add(JSON.stringify(localTheme));
+        if (localStorage.getItem('theme') === 'dark') {
+            localStorage.setItem('theme', 'dark');
+            document.documentElement.classList.add('dark');
+            dispatch(toggleTheme({ mode: true }));
         } else {
-            window.localStorage.setItem('theme', JSON.stringify('light'));
+            localStorage.setItem('theme', 'light');
             document.documentElement.classList.remove('dark');
+            dispatch(toggleTheme({ mode: false }));
         }
-    });
-
-    return [theme, toggleTheme];
+    }, []);
 };

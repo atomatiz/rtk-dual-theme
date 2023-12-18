@@ -1,12 +1,11 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { useThemeHook } from '../../hooks/theme/theme';
 
 export interface ThemeState {
-    darkMode: boolean;
+    mode: boolean;
 }
 
 const initialState: ThemeState = {
-    darkMode: false,
+    mode: false,
 };
 
 export const themeSlice = createSlice({
@@ -15,18 +14,23 @@ export const themeSlice = createSlice({
     reducers: {
         toggleTheme: (
             state,
-            { payload: { darkMode } }: PayloadAction<ThemeState>
+            { payload: { mode } }: PayloadAction<ThemeState>
         ) => {
-            switch (darkMode) {
+            switch (mode) {
                 case false:
-                    state.darkMode = true;
-                    useThemeHook();
+                    state.mode = true;
+                    localStorage.setItem('theme', 'dark');
+                    document.documentElement.classList.add('dark');
                     break;
                 case true:
-                    state.darkMode = false;
-                    useThemeHook();
+                    state.mode = false;
+                    localStorage.setItem('theme', 'light');
+                    document.documentElement.classList.remove('dark');
                     break;
                 default:
+                    state.mode = false;
+                    localStorage.setItem('theme', 'light');
+                    document.documentElement.classList.remove('dark');
                     break;
             }
         },
