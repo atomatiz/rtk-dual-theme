@@ -1,4 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { useThemeHook } from '../../hooks/theme/theme';
 
 export interface ThemeState {
     darkMode: boolean;
@@ -19,13 +20,11 @@ export const themeSlice = createSlice({
             switch (darkMode) {
                 case false:
                     state.darkMode = true;
-                    localStorage.setItem('theme', JSON.stringify('dark'));
-                    document.documentElement.classList.add('dark');
+                    useThemeHook();
                     break;
                 case true:
                     state.darkMode = false;
-                    localStorage.setItem('theme', JSON.stringify('light'));
-                    document.documentElement.classList.remove('dark');
+                    useThemeHook();
                     break;
                 default:
                     break;
