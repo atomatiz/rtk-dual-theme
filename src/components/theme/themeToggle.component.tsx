@@ -1,13 +1,12 @@
-import { useDispatch, useSelector } from 'react-redux';
 import { MdOutlineDarkMode } from "react-icons/md"; 
 import { MdOutlineLightMode } from "react-icons/md"; 
 import { toggleTheme } from '../../redux/reducers/themeSlice';
-import { RootState } from '../../redux/store';
 import { useThemeHook } from '../../hooks/theme/theme';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 
 export default function ToggleTheme() {
-  const theme: boolean = useSelector((state: RootState) => state.theme.mode);
-  const dispatch = useDispatch();
+  const theme: boolean | null | undefined = useAppSelector<boolean | null | undefined>((state) => state.theme.mode);
+  const dispatch = useAppDispatch();
 
   useThemeHook()
 

@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 export interface ThemeState {
-    mode: boolean;
+    mode: boolean | null | undefined;
 }
 
 const initialState: ThemeState = {

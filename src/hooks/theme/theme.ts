@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import { toggleTheme } from '../../redux/reducers/themeSlice';
+import { useAppDispatch } from '../../redux/hooks';
 
 export const useThemeHook = () => {
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
         if (window.localStorage.getItem('theme') === 'dark') {

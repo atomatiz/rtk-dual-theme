@@ -1,14 +1,12 @@
 import "./index.css"
-import { useSelector } from 'react-redux';
-import { RootState } from './redux/store';
-
 import ToggleTheme from './components/theme/themeToggle.component';
 import { darkTheme, lightTheme } from "./utils/theme";
 import { GlobalStyleProvider } from "./styles/global";
 import { ThemeProvider } from "styled-components";
+import { useAppSelector } from "./redux/hooks";
 
 export default function App() {
-  const theme: boolean | null | undefined = useSelector((state: RootState) => state.theme.mode)
+  const theme: boolean | null | undefined = useAppSelector<boolean | null | undefined>((state) => state.theme.mode)
 
   return (
       <ThemeProvider theme={theme ? darkTheme : lightTheme}>
