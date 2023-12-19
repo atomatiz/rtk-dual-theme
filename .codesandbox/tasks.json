@@ -12,10 +12,6 @@
         {
             "name": "Format Code",
             "command": "yarn format"
-        },
-        {
-            "name": "Build App",
-            "command": "yarn build"
         }
     ],
 
