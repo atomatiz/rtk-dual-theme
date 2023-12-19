@@ -19,17 +19,17 @@ export const themeSlice = createSlice({
             switch (mode) {
                 case false:
                     state.mode = true;
-                    localStorage.setItem('theme', 'dark');
+                    window.localStorage.setItem('theme', 'dark');
                     document.documentElement.classList.add('dark');
                     break;
                 case true:
                     state.mode = false;
-                    localStorage.setItem('theme', 'light');
+                    window.localStorage.setItem('theme', 'light');
                     document.documentElement.classList.remove('dark');
                     break;
                 default:
                     state.mode = false;
-                    localStorage.setItem('theme', 'light');
+                    window.localStorage.setItem('theme', 'light');
                     document.documentElement.classList.remove('dark');
                     break;
             }

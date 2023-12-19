@@ -6,12 +6,12 @@ export const useThemeHook = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if (localStorage.getItem('theme') === 'dark') {
-            localStorage.setItem('theme', 'dark');
+        if (window.localStorage.getItem('theme') === 'dark') {
+            window.localStorage.setItem('theme', 'dark');
             document.documentElement.classList.add('dark');
             dispatch(toggleTheme({ mode: true }));
         } else {
-            localStorage.setItem('theme', 'light');
+            window.localStorage.setItem('theme', 'light');
             document.documentElement.classList.remove('dark');
             dispatch(toggleTheme({ mode: false }));
         }

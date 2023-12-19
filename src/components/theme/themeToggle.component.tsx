@@ -6,9 +6,10 @@ import { RootState } from '../../redux/store';
 import { useThemeHook } from '../../hooks/theme/theme';
 
 export default function ToggleTheme() {
-  const dispatch = useDispatch();
-  useThemeHook();
   const theme: boolean = useSelector((state: RootState) => state.theme.mode);
+  const dispatch = useDispatch();
+
+  useThemeHook()
 
   return ( 
     theme
