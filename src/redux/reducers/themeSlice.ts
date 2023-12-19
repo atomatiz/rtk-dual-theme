@@ -4,7 +4,7 @@ export interface ThemeState {
     mode: boolean | null | undefined;
 }
 
-const initialState: ThemeState = {
+const initialState: Pick<ThemeState, 'mode'> = {
     mode: false,
 };
 

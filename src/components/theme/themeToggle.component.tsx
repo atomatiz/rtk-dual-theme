@@ -9,7 +9,7 @@ export default function ToggleTheme() {
         boolean | null | undefined
     >((state) => state.theme.mode);
     const dispatch = useAppDispatch();
-
+    
     useThemeHook();
 
     return theme ? (
