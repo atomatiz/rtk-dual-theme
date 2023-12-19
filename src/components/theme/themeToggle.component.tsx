@@ -1,19 +1,20 @@
-import { MdOutlineDarkMode } from "react-icons/md"; 
-import { MdOutlineLightMode } from "react-icons/md"; 
+import { MdOutlineDarkMode } from 'react-icons/md';
+import { MdOutlineLightMode } from 'react-icons/md';
 import { toggleTheme } from '../../redux/reducers/themeSlice';
 import { useThemeHook } from '../../hooks/theme/theme';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 
 export default function ToggleTheme() {
-  const theme: boolean | null | undefined = useAppSelector<boolean | null | undefined>((state) => state.theme.mode);
-  const dispatch = useAppDispatch();
+    const theme: boolean | null | undefined = useAppSelector<
+        boolean | null | undefined
+    >((state) => state.theme.mode);
+    const dispatch = useAppDispatch();
 
-  useThemeHook()
+    useThemeHook();
 
-  return ( 
-    theme
-      ? <MdOutlineLightMode
-          className="
+    return theme ? (
+        <MdOutlineLightMode
+            className="
             dark:cursor-pointer
             dark:text-sky-500 
             dark:text-4xl
@@ -24,9 +25,11 @@ export default function ToggleTheme() {
             dark:hover:bg-stone-900
             dark:hover:animate-bounce w-10 h-10
           "
-            onClick={() => dispatch(toggleTheme({mode: theme}))} /> 
-      : <MdOutlineDarkMode 
-          className="
+            onClick={() => dispatch(toggleTheme({ mode: theme }))}
+        />
+    ) : (
+        <MdOutlineDarkMode
+            className="
             cursor-pointer
             text-sky-500 
             text-4xl
@@ -37,6 +40,7 @@ export default function ToggleTheme() {
             hover:bg-gray-100
             hover:animate-bounce w-10 h-10
           "
-            onClick={() => dispatch(toggleTheme({mode: theme}))}/>
-  ); 
+            onClick={() => dispatch(toggleTheme({ mode: theme }))}
+        />
+    );
 }
