@@ -21,31 +21,20 @@ export const themeSlice = createSlice({
             state,
             { payload: { mode } }: PayloadAction<ThemeState>
         ) => {
-            setDarkOrLightTheme(mode);
+            setTheme(mode);
 
-            function setDarkOrLightTheme(mode: boolean | null | undefined) {
-                if (mode === false) {
-                    state.mode = true;
-                    window.localStorage.setItem(
-                        LOCALSTORAGE_KEY.THEME,
-                        themeStatus.DARK
-                    );
-                    document.documentElement.classList.add(themeStatus.DARK);
-                } else if (mode === true) {
-                    state.mode = false;
-                    window.localStorage.setItem(
-                        LOCALSTORAGE_KEY.THEME,
-                        themeStatus.LIGHT
-                    );
-                    document.documentElement.classList.remove(themeStatus.DARK);
-                } else {
-                    state.mode = false;
-                    window.localStorage.setItem(
-                        LOCALSTORAGE_KEY.THEME,
-                        themeStatus.LIGHT
-                    );
-                    document.documentElement.classList.remove(themeStatus.DARK);
-                }
+            function setTheme(mode?: boolean | null | undefined) {
+                if (mode === null || mode === undefined) mode = true;
+                state.mode = !mode;
+                window.localStorage.setItem(
+                    LOCALSTORAGE_KEY.THEME,
+                    mode ? themeStatus.LIGHT : themeStatus.DARK
+                );
+                mode
+                    ? document.documentElement.classList.remove(
+                          themeStatus.DARK
+                      )
+                    : document.documentElement.classList.add(themeStatus.DARK);
             }
         },
     },
