@@ -4,7 +4,7 @@ import { ThemeState, toggleTheme } from '../../redux/reducers/themeSlice';
 import { useThemeHook } from '../../hooks/theme/theme';
 import { useAppDispatch } from '../../redux/hooks';
 
-export default function ToggleTheme({mode}: ThemeState) {
+export default function ToggleThemeComponent({mode}: ThemeState) {
     const dispatch = useAppDispatch();
 
     useThemeHook();
