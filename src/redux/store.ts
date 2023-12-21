@@ -11,9 +11,10 @@ import {
     persistReducer,
     persistStore,
 } from 'redux-persist';
+import { REDUX_STORE_KEY } from '../utils/theme';
 
 const persistConfig = {
-    key: 'rtk-dual-theme',
+    key: REDUX_STORE_KEY.PERSIST,
     storage: storage,
 };
 

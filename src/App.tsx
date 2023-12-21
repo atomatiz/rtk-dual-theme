@@ -6,9 +6,7 @@ import { ThemeProvider } from 'styled-components';
 import { useAppSelector } from './redux/hooks';
 
 export default function App() {
-    const theme: boolean | null | undefined = useAppSelector<
-        boolean | null | undefined
-    >((state) => state.theme.mode);
+    const theme: boolean | null | undefined = useAppSelector((state) => state.theme.mode);
 
     return (
         <ThemeProvider theme={theme ? darkTheme : lightTheme}>
@@ -17,7 +15,7 @@ export default function App() {
                 {theme ? 'DARK' : 'BRIGHT'}
             </h1>
             <span className="flex justify-center">
-                <ToggleTheme />
+                <ToggleTheme mode={theme}/>
             </span>
         </ThemeProvider>
     );

@@ -1,4 +1,9 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import {
+    LOCALSTORAGE_KEY,
+    REDUX_STORE_KEY,
+    themeStatus,
+} from '../../utils/theme';
 
 export interface ThemeState {
     mode: boolean | null | undefined;
@@ -9,7 +14,7 @@ const initialState: Pick<ThemeState, 'mode'> = {
 };
 
 export const themeSlice = createSlice({
-    name: 'theme',
+    name: REDUX_STORE_KEY.THEME,
     initialState: initialState,
     reducers: {
         toggleTheme: (
@@ -18,20 +23,32 @@ export const themeSlice = createSlice({
         ) => {
             switch (mode) {
                 case false:
-                    state.mode = true;
-                    window.localStorage.setItem('theme', 'dark');
-                    document.documentElement.classList.add('dark');
+                    setDarkTheme();
                     break;
                 case true:
-                    state.mode = false;
-                    window.localStorage.setItem('theme', 'light');
-                    document.documentElement.classList.remove('dark');
+                    setLightTheme();
                     break;
                 default:
-                    state.mode = false;
-                    window.localStorage.setItem('theme', 'light');
-                    document.documentElement.classList.remove('dark');
+                    setLightTheme();
                     break;
+            }
+
+            function setDarkTheme() {
+                state.mode = true;
+                window.localStorage.setItem(
+                    LOCALSTORAGE_KEY.THEME,
+                    themeStatus.DARK
+                );
+                document.documentElement.classList.add(themeStatus.DARK);
+            }
+
+            function setLightTheme() {
+                state.mode = false;
+                window.localStorage.setItem(
+                    LOCALSTORAGE_KEY.THEME,
+                    themeStatus.LIGHT
+                );
+                document.documentElement.classList.remove(themeStatus.DARK);
             }
         },
     },
