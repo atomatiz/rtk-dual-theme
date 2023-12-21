@@ -21,34 +21,31 @@ export const themeSlice = createSlice({
             state,
             { payload: { mode } }: PayloadAction<ThemeState>
         ) => {
-            switch (mode) {
-                case false:
-                    setDarkTheme();
-                    break;
-                case true:
-                    setLightTheme();
-                    break;
-                default:
-                    setLightTheme();
-                    break;
-            }
+            setDarkOrLightTheme(mode);
 
-            function setDarkTheme() {
-                state.mode = true;
-                window.localStorage.setItem(
-                    LOCALSTORAGE_KEY.THEME,
-                    themeStatus.DARK
-                );
-                document.documentElement.classList.add(themeStatus.DARK);
-            }
-
-            function setLightTheme() {
-                state.mode = false;
-                window.localStorage.setItem(
-                    LOCALSTORAGE_KEY.THEME,
-                    themeStatus.LIGHT
-                );
-                document.documentElement.classList.remove(themeStatus.DARK);
+            function setDarkOrLightTheme(mode: boolean | null | undefined) {
+                if (mode === false) {
+                    state.mode = true;
+                    window.localStorage.setItem(
+                        LOCALSTORAGE_KEY.THEME,
+                        themeStatus.DARK
+                    );
+                    document.documentElement.classList.add(themeStatus.DARK);
+                } else if (mode === true) {
+                    state.mode = false;
+                    window.localStorage.setItem(
+                        LOCALSTORAGE_KEY.THEME,
+                        themeStatus.LIGHT
+                    );
+                    document.documentElement.classList.remove(themeStatus.DARK);
+                } else {
+                    state.mode = false;
+                    window.localStorage.setItem(
+                        LOCALSTORAGE_KEY.THEME,
+                        themeStatus.LIGHT
+                    );
+                    document.documentElement.classList.remove(themeStatus.DARK);
+                }
             }
         },
     },
