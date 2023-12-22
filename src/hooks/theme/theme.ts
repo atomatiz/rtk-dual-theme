@@ -27,12 +27,6 @@ export const useThemeHook = () => {
     };
 
     useEffect(() => {
-        try {
-            return setTheme();
-        } catch (error) {
-            console.log('Theme Hook error: ' + error);
-        } finally {
-            setTheme();
-        }
+        setTheme();
     }, []);
 };
