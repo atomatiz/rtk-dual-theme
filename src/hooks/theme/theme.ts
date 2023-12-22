@@ -5,11 +5,12 @@ import { useAppDispatch } from '../../redux/hooks';
 import { LOCALSTORAGE_KEY } from '../../utils/theme';
 
 export const useThemeHook = () => {
+    const prevTheme: string | null | undefined = window.localStorage.getItem(
+        LOCALSTORAGE_KEY.THEME
+    );
     const dispatch = useAppDispatch();
 
     const setTheme = () => {
-        const prevTheme: string | null | undefined =
-            window.localStorage.getItem(LOCALSTORAGE_KEY.THEME);
         if (prevTheme === null || prevTheme === undefined)
             prevTheme === themeStatus.LIGHT;
         window.localStorage.setItem(
